@@ -1,4 +1,4 @@
-// RR Tech - Video Editing Courses Website
+// RR Techs - Video Editing Courses Website
 // Main JavaScript File
 
 // ============ FORM HANDLING ============
@@ -296,4 +296,4 @@ window.addEventListener('unhandledrejection', function(event) {
 // ============ INITIALIZATION ============
 
 // Log successful page load
-console.log('RR Tech - Video Editing Courses Website loaded successfully!');
+console.log('RR Techs - Video Editing Courses Website loaded successfully!');

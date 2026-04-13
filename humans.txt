@@ -1,6 +1,6 @@
 /* TEAM */
 Creator: Ranjith
-Site: RR Tech - Professional Video Editing Courses
+Site: RR Techs - Professional Video Editing Courses
 Email: rrtechs@gmail.com
 Location: Karnataka, India
 
@@ -16,6 +16,6 @@ Instagram: https://instagram.com/rrtechs
 Telegram: https://t.me/rrtechs
 
 /* THANKS */
-Thanks to all students and supporters of RR Tech!
+Thanks to all students and supporters of RR Techs!
 We create quality video editing courses and tutorials
 in both Kannada and English for aspiring content creators.
