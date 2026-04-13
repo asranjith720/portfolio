@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RR Tech – Video Editing Courses & Tutorials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8341A;
+    --red-dark: #B5260F;
+    --red-light: #FF5A3C;
+    --black: #0D0D0D;
+    --white: #FAFAF8;
+    --gray: #1A1A1A;
+    --gray2: #2A2A2A;
+    --muted: #888;
+    --border: rgba(255,255,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem; font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--red); color: var(--white);
+    padding: 0.55rem 1.4rem; border-radius: 6px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(232,52,26,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,52,26,0.06) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; max-width: 1200px; width: 100%;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,52,26,0.12); border: 1px solid rgba(232,52,26,0.3);
+    color: var(--red-light); padding: 0.4rem 1rem;
+    border-radius: 100px; font-size: 0.8rem; font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; background: var(--red-light);
+    border-radius: 50%; animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 .accent { color: var(--red); }
+  .hero p {
+    font-size: 1.1rem; color: #999; line-height: 1.7;
+    max-width: 480px; margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    text-decoration: none; font-weight: 600;
+    font-family: 'Syne', sans-serif; font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    text-decoration: none; font-weight: 500;
+    font-family: 'Syne', sans-serif; font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 800; color: var(--white);
+    letter-spacing: -0.03em;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+  /* HERO IMAGE SIDE */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .hero-avatar {
+    width: 360px; height: 420px;
+    background: linear-gradient(145deg, var(--gray) 0%, var(--gray2) 100%);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .avatar-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+  }
+  .avatar-icon {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--red) 0%, #FF7A5C 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+    color: white;
+  }
+  .avatar-placeholder p {
+    font-size: 0.85rem; color: var(--muted); text-align: center; padding: 0 2rem;
+  }
+  .hero-badge {
+    position: absolute;
+    background: var(--gray2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 0.75rem 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .badge-yt { bottom: -20px; right: -20px; }
+  .badge-sub { top: 20px; left: -20px; }
+  .badge-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .badge-icon.red { background: rgba(232,52,26,0.15); }
+  .badge-icon.green { background: rgba(34,197,94,0.15); font-size: 0.9rem; }
+  .badge-text { }
+  .badge-text strong { display: block; font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; }
+  .badge-text span { font-size: 0.75rem; color: var(--muted); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5%; }
+  .section-tag {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 0.8rem; display: block;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 1rem;
+  }
+  .section-sub { color: #777; font-size: 1.05rem; line-height: 1.7; max-width: 560px; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-sub { margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: var(--gray); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-img {
+    background: var(--gray2); border-radius: 20px;
+    height: 420px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+  }
+  .about-img-icon {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--red) 0%, #FF7A5C 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800;
+    color: white;
+  }
+  .about-img p { color: var(--muted); font-size: 0.85rem; }
+  .about-skills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .skill-tag {
+    background: rgba(232,52,26,0.1); border: 1px solid rgba(232,52,26,0.25);
+    color: #FF8070; padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .about-list { list-style: none; margin-top: 1.5rem; }
+  .about-list li {
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.75rem;
+    color: #ccc; font-size: 0.95rem;
+  }
+  .about-list li::before {
+    content: '→'; color: var(--red); font-size: 0.85rem;
+  }
+
+  /* COURSES */
+  .courses { background: var(--black); }
+  .courses-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .course-card {
+    background: var(--gray); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .course-card:hover { transform: translateY(-6px); border-color: rgba(232,52,26,0.4); }
+  .course-thumb {
+    height: 180px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .course-thumb.red-grad { background: linear-gradient(135deg, #8B1500 0%, #E8341A 50%, #FF6B4A 100%); }
+  .course-thumb.blue-grad { background: linear-gradient(135deg, #0D2B6E 0%, #1E5FCC 50%, #4A90FF 100%); }
+  .course-thumb.dark-grad { background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%); }
+  .course-thumb-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem; font-weight: 800;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .course-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 0.3rem 0.75rem; border-radius: 6px;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .badge-bestseller { background: #FFD700; color: #5A4000; }
+  .badge-new { background: var(--red); color: white; }
+  .badge-popular { background: #7C3AED; color: white; }
+  .course-body { padding: 1.5rem; }
+  .course-level {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 0.5rem; display: block;
+  }
+  .course-body h3 {
+    font-size: 1.2rem; font-weight: 700; line-height: 1.3;
+    margin-bottom: 0.6rem; color: var(--white);
+  }
+  .course-body p { font-size: 0.88rem; color: #888; line-height: 1.6; margin-bottom: 1.2rem; }
+  .course-meta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-size: 0.8rem; color: #777; margin-bottom: 1.2rem;
+  }
+  .course-meta span { display: flex; align-items: center; gap: 5px; }
+  .course-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem; border-top: 1px solid var(--border);
+  }
+  .course-price { }
+  .course-price .price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 800; color: var(--white);
+  }
+  .course-price .og-price {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: line-through; margin-left: 8px;
+  }
+  .course-price .discount {
+    font-size: 0.75rem; color: #4ADE80;
+    margin-left: 6px; font-weight: 600;
+  }
+  .btn-enroll {
+    background: var(--red); color: white;
+    padding: 0.55rem 1.2rem; border-radius: 8px;
+    text-decoration: none; font-size: 0.85rem; font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .btn-enroll:hover { background: var(--red-light); }
+
+  /* YOUTUBE */
+  .youtube { background: var(--gray); }
+  .yt-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .yt-card {
+    background: var(--gray2); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .yt-card:hover { transform: translateY(-4px); border-color: rgba(232,52,26,0.35); }
+  .yt-thumb {
+    height: 160px; background: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .yt-thumb-bg { position: absolute; inset: 0; }
+  .yt-thumb-bg.t1 { background: linear-gradient(135deg, #1A0A00, #6B2200); }
+  .yt-thumb-bg.t2 { background: linear-gradient(135deg, #001524, #003D99); }
+  .yt-thumb-bg.t3 { background: linear-gradient(135deg, #0A001A, #4A0080); }
+  .yt-thumb-bg.t4 { background: linear-gradient(135deg, #001A0A, #006B28); }
+  .play-btn {
+    position: relative; z-index: 1;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(232,52,26,0.9); border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  .yt-card:hover .play-btn { transform: scale(1.1); }
+  .play-btn svg { fill: white; margin-left: 3px; }
+  .yt-duration {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.75); color: white;
+    font-size: 0.72rem; font-weight: 600;
+    padding: 2px 6px; border-radius: 4px;
+  }
+  .yt-info { padding: 1rem 1.1rem; }
+  .yt-info h4 {
+    font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+    line-height: 1.35; margin-bottom: 0.5rem; color: var(--white);
+  }
+  .yt-meta { font-size: 0.78rem; color: var(--muted); }
+  .yt-channel {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;
+    background: var(--gray2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem 2rem;
+    max-width: 1200px;
+    flex-wrap: wrap;
+  }
+  .yt-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--red) 0%, #FF7A5C 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: white;
+    flex-shrink: 0;
+  }
+  .yt-channel-info { flex: 1; }
+  .yt-channel-info h3 {
+    font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem;
+  }
+  .yt-channel-info p { color: var(--muted); font-size: 0.88rem; }
+  .btn-yt {
+    background: var(--red); color: white;
+    padding: 0.65rem 1.5rem; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-yt:hover { background: var(--red-light); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--black); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .testi-card {
+    background: var(--gray); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.8rem;
+  }
+  .stars { color: #FFD700; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-card p { color: #aaa; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    color: white; flex-shrink: 0;
+  }
+  .av1 { background: linear-gradient(135deg, #E8341A, #FF7A5C); }
+  .av2 { background: linear-gradient(135deg, #7C3AED, #A855F7); }
+  .av3 { background: linear-gradient(135deg, #0E7490, #22D3EE); }
+  .av4 { background: linear-gradient(135deg, #065F46, #10B981); }
+  .testi-name { font-weight: 600; font-size: 0.9rem; }
+  .testi-role { font-size: 0.78rem; color: var(--muted); }
+
+  /* CONTACT */
+  .contact { background: var(--gray); }
+  .contact-inner {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .contact-link {
+    background: var(--gray2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.2rem 2rem;
+    text-decoration: none; color: var(--white);
+    display: flex; align-items: center; gap: 0.75rem;
+    transition: border-color 0.2s, background 0.2s;
+    font-weight: 500; font-size: 0.95rem;
+  }
+  .contact-link:hover { border-color: rgba(232,52,26,0.5); background: rgba(232,52,26,0.05); }
+  .contact-link-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(232,52,26,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .contact-form {
+    margin-top: 3rem; text-align: left;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.85rem; color: #888; font-weight: 500; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--gray2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.8rem 1rem;
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: rgba(232,52,26,0.6); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: #2A2A2A; }
+  .btn-submit {
+    width: 100%; background: var(--red); color: white;
+    padding: 1rem; border-radius: 10px; border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-submit:hover { background: var(--red-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); border-top: 1px solid var(--border);
+    padding: 2rem 5%; text-align: center;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  footer a { color: var(--red); text-decoration: none; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 1200px; margin: 0 auto; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 5% 3rem; }
+    .yt-channel { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">RR<span>techs</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#youtube">YouTube</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#courses" class="nav-cta">Explore Courses →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Video Editing Expert & Content Creator</div>
+      <h1>Master <span class="accent">Video Editing</span> Like a Pro</h1>
+      <p>Hi, I'm Ranjith! Welcome to RR Tech — your hub for professional video editing courses. Learn industry-standard tools, creative techniques, and turn your passion for video into a profitable skill with hands-on, practical training in Kannada & English.</p>
+      <div class="hero-btns">
+        <a href="#courses" class="btn-primary">Browse Courses →</a>
+        <a href="#youtube" class="btn-secondary">▶ Watch on YouTube</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">80<span>K+</span></div>
+          <div class="stat-label">YouTube Subscribers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3<span>K+</span></div>
+          <div class="stat-label">Students Enrolled</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8<span>+</span></div>
+          <div class="stat-label">Video Editing Courses</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-avatar">
+        <div class="avatar-placeholder">
+          <div class="avatar-icon">RR</div>
+          <p>Add your photo here — replace this placeholder with your image</p>
+        </div>
+      </div>
+      <div class="hero-badge badge-yt">
+        <div class="badge-icon red">▶</div>
+        <div class="badge-text">
+          <strong>RRtechs</strong>
+          <span>YouTube Channel</span>
+        </div>
+      </div>
+      <div class="hero-badge badge-sub">
+        <div class="badge-icon green">★</div>
+        <div class="badge-text">
+          <strong>Top Rated</strong>
+          <span>Tech Educator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-img">
+      <div class="about-img-icon">RR</div>
+      <p>Your photo goes here</p>
+    </div>
+    <div>
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">Passionate about Video Editing & Content Creation</h2>
+      <p style="color:#aaa; line-height:1.8; margin-bottom:1rem;">
+        Hey! I'm Ranjith, the creator behind <strong style="color:#FF8070">RR Tech</strong> — a channel dedicated to empowering creators with professional video editing skills. I create comprehensive tutorials on Adobe Premiere Pro, DaVinci Resolve, CapCut, Adobe After Effects, and more in both Kannada & English.
+      </p>
+      <p style="color:#aaa; line-height:1.8;">
+        From hobby projects to full-time content creation — my mission is simple: help aspiring video editors and content creators in Karnataka and across India master industry-standard tools, develop a creative eye, and build a profitable editing business without expensive bootcamps or confusing jargon.
+      </p>
+      <ul class="about-list">
+        <li>Professional video editing with industry-standard software</li>
+        <li>YouTube video production & monetization strategies</li>
+        <li>Color grading & visual effects tutorials</li>
+        <li>Audio editing & sound design fundamentals</li>
+      </ul>
+      <div class="about-skills">
+        <span class="skill-tag">Adobe Premiere Pro</span>
+        <span class="skill-tag">DaVinci Resolve</span>
+        <span class="skill-tag">After Effects</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">Color Grading</span>
+        <span class="skill-tag">Motion Graphics</span>
+        <span class="skill-tag">Audio Editing</span>
+        <span class="skill-tag">YouTube SEO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="section-header centered">
+    <span class="section-tag">Courses</span>
+    <h2 class="section-title">Professional Video Editing Courses</h2>
+    <p class="section-sub">Practical, project-based video editing courses designed to make you job-ready. Learn industry-standard tools at your own pace with lifetime access and updates.</p>
+  </div>
+  <div class="courses-grid">
+
+    <div class="course-card">
+      <div class="course-thumb red-grad">
+        <span class="course-thumb-text">PREMIERE</span>
+        <span class="course-badge badge-bestseller">Bestseller</span>
+      </div>
+      <div class="course-body">
+        <span class="course-level">Beginner</span>
+        <h3>Adobe Premiere Pro Complete Masterclass</h3>
+        <p>Master the industry's most popular editing software. From basics to professional color grading and effects. Build your first YouTube-ready video project.</p>
+        <div class="course-meta">
+          <span>⏱ 48 hrs</span>
+          <span>📹 150 lessons</span>
+          <span>🌐 Kannada + English</span>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <span class="price">₹1,299</span>
+            <span class="og-price">₹4,999</span>
+            <span class="discount">74% OFF</span>
+          </div>
+          <a href="#contact" class="btn-enroll">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb blue-grad">
+        <span class="course-thumb-text">DAVINCI</span>
+        <span class="course-badge badge-new">New</span>
+      </div>
+      <div class="course-body">
+        <span class="course-level">Beginner to Intermediate</span>
+        <h3>DaVinci Resolve — Professional Color Grading & Editing</h3>
+        <p>Learn the FREE professional-grade editor used by Hollywood studios. Master color grading, fusion effects, and advanced editing workflows. Save money, look professional.</p>
+        <div class="course-meta">
+          <span>⏱ 40 hrs</span>
+          <span>📹 120 lessons</span>
+          <span>🌐 Kannada</span>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <span class="price">₹899</span>
+            <span class="og-price">₹3,499</span>
+            <span class="discount">74% OFF</span>
+          </div>
+          <a href="#contact" class="btn-enroll">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb dark-grad">
+        <span class="course-thumb-text">EFFECTS</span>
+        <span class="course-badge badge-popular">Popular</span>
+      </div>
+      <div class="course-body">
+        <span class="course-level">Intermediate</span>
+        <h3>After Effects & Motion Graphics for Video Editors</h3>
+        <p>Create stunning visual effects and motion graphics. Learn animation principles, particle effects, 3D compositing. Add professional polish to your videos.</p>
+        <div class="course-meta">
+          <span>⏱ 45 hrs</span>
+          <span>📹 140 lessons</span>
+          <span>🌐 English + Kannada</span>
+        </div>
+        <div class="course-footer">
+          <div class="course-price">
+            <span class="price">₹1,499</span>
+            <span class="og-price">₹5,999</span>
+            <span class="discount">75% OFF</span>
+          </div>
+          <a href="#contact" class="btn-enroll">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center; margin-top:3rem;">
+    <a href="#contact" class="btn-secondary" style="display:inline-flex;">View All Courses →</a>
+  </div>
+</section>
+
+<!-- YOUTUBE -->
+<section class="youtube" id="youtube">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="yt-channel">
+      <div class="yt-avatar">RR</div>
+      <div class="yt-channel-info">
+        <h3>RR Tech — YouTube Channel</h3>
+        <p>80,000+ subscribers · 300+ free videos on Video Editing, Content Creation & YouTube Growth</p>
+      </div>
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="btn-yt">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+        Subscribe
+      </a>
+    </div>
+    <div class="section-header">
+      <span class="section-tag">Latest Videos</span>
+      <h2 class="section-title">Free Content on YouTube</h2>
+    </div>
+    <div class="yt-grid">
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="yt-card">
+        <div class="yt-thumb">
+          <div class="yt-thumb-bg t1"></div>
+          <div class="play-btn"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M0 0 L14 8 L0 16 Z"/></svg></div>
+          <span class="yt-duration">52:30</span>
+        </div>
+        <div class="yt-info">
+          <h4>Adobe Premiere Pro Full Course for Beginners 2024 | Kannada</h4>
+          <div class="yt-meta">35K views · 2 weeks ago</div>
+        </div>
+      </a>
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="yt-card">
+        <div class="yt-thumb">
+          <div class="yt-thumb-bg t2"></div>
+          <div class="play-btn"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M0 0 L14 8 L0 16 Z"/></svg></div>
+          <span class="yt-duration">38:15</span>
+        </div>
+        <div class="yt-info">
+          <h4>Professional Color Grading Tutorial | DaVinci Resolve | RR Tech</h4>
+          <div class="yt-meta">28K views · 1 month ago</div>
+        </div>
+      </a>
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="yt-card">
+        <div class="yt-thumb">
+          <div class="yt-thumb-bg t3"></div>
+          <div class="play-btn"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M0 0 L14 8 L0 16 Z"/></svg></div>
+          <span class="yt-duration">1:05:45</span>
+        </div>
+        <div class="yt-info">
+          <h4>Motion Graphics in After Effects — Animate Like a Pro</h4>
+          <div class="yt-meta">52K views · 3 months ago</div>
+        </div>
+      </a>
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="yt-card">
+        <div class="yt-thumb">
+          <div class="yt-thumb-bg t4"></div>
+          <div class="play-btn"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M0 0 L14 8 L0 16 Z"/></svg></div>
+          <span class="yt-duration">31:22</span>
+        </div>
+        <div class="yt-info">
+          <h4>How to Make Money with Video Editing in 2024 | YouTube Strategy</h4>
+          <div class="yt-meta">18K views · 5 months ago</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header centered">
+    <span class="section-tag">Testimonials</span>
+    <h2 class="section-title">What Video Editors & Creators Say</h2>
+    <p class="section-sub">Real feedback from students who mastered professional video editing and built their creative careers with RR Tech.</p>
+  </div>
+  <div class="testi-grid" style="max-width:1200px; margin:0 auto;">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Ranjith's Premiere Pro course is absolutely fantastic! I went from zero editing experience to creating professional YouTube videos within 3 weeks. My channel went from 100 subs to 5K in 2 months. Highly recommend!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar av1">AR</div>
+        <div>
+          <div class="testi-name">Aravind R.</div>
+          <div class="testi-role">YouTuber, Bengaluru</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"The DaVinci Resolve course saved me thousands of rupees on editing software! The color grading section alone is worth the entire course. Now I'm doing freelance work and making ₹50K/month. Thanks RR!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar av2">PM</div>
+        <div>
+          <div class="testi-name">Priya M.</div>
+          <div class="testi-role">Freelance Editor, Hyderabad</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Started with zero experience, now I'm editing product videos for brands. The practical project-based approach makes everything so clear. RR's teaching style is amazing!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar av3">SK</div>
+        <div>
+          <div class="testi-name">Suresh K.</div>
+          <div class="testi-role">Video Editor, Mysuru</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"The After Effects and motion graphics course is insane! I've added so much value to my freelance portfolio. Lifetime access means I keep learning as new techniques come out. Best investment!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar av4">NK</div>
+        <div>
+          <div class="testi-name">Nithya K.</div>
+          <div class="testi-role">Motion Graphics Designer, Dharwad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="section-tag">Get in Touch</span>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-sub">Have questions about video editing courses? Want to collaborate on a project? Reach out through any platform below!</p>
+    <div class="contact-links">
+      <a href="https://youtube.com/@RRtechs" target="_blank" class="contact-link">
+        <div class="contact-link-icon">▶</div>
+        YouTube
+      </a>
+      <a href="https://instagram.com/rrtechs" target="_blank" class="contact-link">
+        <div class="contact-link-icon">📸</div>
+        Instagram
+      </a>
+      <a href="https://t.me/rrtechs" target="_blank" class="contact-link">
+        <div class="contact-link-icon">✈</div>
+        Telegram
+      </a>
+      <a href="mailto:rrtechs@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        Email
+      </a>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Rahul Kumar">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="rahul@gmail.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Interested In</label>
+        <select>
+          <option>Adobe Premiere Pro Course</option>
+          <option>DaVinci Resolve Course</option>
+          <option>After Effects & Motion Graphics</option>
+          <option>All Courses Bundle</option>
+          <option>Collaboration / Sponsorship</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Hi RR, I wanted to ask about..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="alert('Thank you! Message sent. Ranjith will get back to you soon 🎬')">
+        Send Message →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>© 2024 <a href="#">RR Tech</a>. All rights reserved.</span>
+    <span>Made with 🎬 in Karnataka, India</span>
+    <span>
+      <a href="#">Privacy</a> &nbsp;·&nbsp;
+      <a href="#">Terms</a> &nbsp;·&nbsp;
+      <a href="#courses">Courses</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
