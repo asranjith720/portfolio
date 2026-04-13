@@ -1,0 +1,21 @@
+/* TEAM */
+Creator: Ranjith
+Site: RR Tech - Professional Video Editing Courses
+Email: rrtechs@gmail.com
+Location: Karnataka, India
+
+/* SITE */
+Last update: 2024-04-13
+Standards: HTML5, CSS3, Semantic Web
+Components: Adobe Premiere Pro, DaVinci Resolve, After Effects, Motion Graphics
+Technology: HTML, CSS, JavaScript
+
+/* SOCIAL */
+YouTube: https://youtube.com/@RRtechs
+Instagram: https://instagram.com/rrtechs
+Telegram: https://t.me/rrtechs
+
+/* THANKS */
+Thanks to all students and supporters of RR Tech!
+We create quality video editing courses and tutorials
+in both Kannada and English for aspiring content creators.
